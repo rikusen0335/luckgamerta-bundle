@@ -1,0 +1,87 @@
+{
+  "name": "speedcontrol-luckgamerta",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "nodecg": {
+    "compatibleRange": "^1.8.1",
+    "dashboardPanels": [
+      {
+        "name": "point",
+        "title": "Point",
+        "width": 3,
+        "file": "point.html",
+        "headerColor": "#525F78"
+      },
+      {
+        "name": "editor",
+        "title": "Editor",
+        "width": 3,
+        "file": "editor.html",
+        "headerColor": "#525F78"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "tennis.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "main.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint 'src/**/*.{ts,tsx}' webpack.config.ts && tsc --noEmit --project tsconfig.webpack.json && tsc --noEmit",
+    "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}' webpack.config.ts && tsc --noEmit --project tsconfig.webpack.json && tsc --noEmit",
+    "build": "cross-env NODE_ENV='production' TS_NODE_PROJECT='tsconfig.webpack.json' webpack",
+    "watch": "cross-env NODE_ENV='production' TS_NODE_PROJECT='tsconfig.webpack.json' webpack --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.0.1",
+    "@types/react-dom": "^18.0.0",
+    "@types/styled-components": "^5.1.25",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "autoprefixer": "^10.4.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^7.0.3",
+    "dotenv-webpack": "^7.1.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-hooks": "^0.4.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "html-webpack-plugin": "^5.5.0",
+    "postcss": "^8.4.12",
+    "prettier": "^2.6.2",
+    "tailwindcss": "^3.0.23",
+    "ts-loader": "^9.2.8",
+    "ts-node": "^10.7.0",
+    "ts-nodecg": "^0.3.1",
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "@types/google-spreadsheet": "^3.2.0",
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
+    "google-spreadsheet": "^3.2.0",
+    "googleapis": "^39.2.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "styled-components": "^5.3.5"
+  }
+}
