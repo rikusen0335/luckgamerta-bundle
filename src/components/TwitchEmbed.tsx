@@ -1,16 +1,19 @@
 import React, { VFC } from "react"
 
 type Props = {
-  width: number;
-  height: number;
+  width: number | string;
+  height: number | string;
   channelName: string;
   parent: string;
   muted?: boolean;
+
+  className?: string;
 }
 
-export const TwitchEmbed: VFC<Props> = ({ width, height, channelName, parent, muted = true }) => {
+export const TwitchEmbed: VFC<Props> = ({ className, width, height, channelName, parent, muted = true }) => {
   return (
     <iframe
+      className={className}
       src={`https://player.twitch.tv/?channel=${channelName}&parent=${parent}&muted=${muted}`}
       height={height}
       width={width}
