@@ -35,11 +35,12 @@
     ]
   },
   "scripts": {
+    "dev": "npm run watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint 'src/**/*.{ts,tsx}' webpack.config.ts && tsc --noEmit --project tsconfig.webpack.json && tsc --noEmit",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}' webpack.config.ts && tsc --noEmit --project tsconfig.webpack.json && tsc --noEmit",
     "build": "cross-env NODE_ENV='production' TS_NODE_PROJECT='tsconfig.webpack.json' webpack",
-    "watch": "cross-env NODE_ENV='production' TS_NODE_PROJECT='tsconfig.webpack.json' webpack --watch"
+    "watch": "cross-env NODE_ENV='production' TS_NODE_PROJECT='tsconfig.webpack.json' webpack watch"
   },
   "keywords": [],
   "author": "",
