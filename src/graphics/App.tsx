@@ -131,7 +131,7 @@ export const App: VFC = () => {
       <GridItem colSpan={1} rowSpan={2} >
         <Grid
           h="100%"
-          gap={3}
+          gap={5}
           templateRows='repeat(22, 1fr)'
         >
           <GridItem colSpan={1}>
