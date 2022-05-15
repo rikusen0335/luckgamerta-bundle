@@ -35,14 +35,14 @@ export const App: VFC = () => {
       <Grid
         h="100%"
         templateRows='repeat(11, 1fr)'
-        gap={1}
+        gap={3}
       >
         <GridItem rowSpan={9} borderColor="primary" borderStyle="solid">
           {/* <TwitchEmbed width="100%" height="100%" channelName={twitchName} parent="localhost" /> */}
-          <Box w={703} h={395} border={2} borderColor="gray.200" borderStyle="solid" bgColor="gray.100" />
+          <Box w={670} h={360} border={2} borderColor="gray.200" borderStyle="solid" bgColor="gray.100" m="auto" />
         </GridItem>
         <GridItem rowSpan={2}>
-          <Flex gap={2} flexDir="column" position="relative">
+          <Flex gap={2} flexDir="column" position="relative" mx={10}>
             <Flex
               position="absolute"
               inset={0}
@@ -126,7 +126,7 @@ export const App: VFC = () => {
       p="16px"
       templateRows='repeat(2, 1fr)'
       templateColumns='repeat(5, 1fr)'
-      gap={6}
+      gap={3}
     >
       <GridItem colSpan={1} rowSpan={2} >
         <Grid

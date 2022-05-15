@@ -3,7 +3,7 @@ import { NodeCG } from 'nodecg-types/types/server'
 import livesplitCore from "livesplit-core"
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { Stream } from '@/types/replicant';
-import { convertHMtoSeconds } from '@/utils';
+import { convertHMStoSeconds, convertHMtoSeconds } from '@/utils';
 import _ from 'lodash';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat'
@@ -21,6 +21,7 @@ module.exports = async function (nodecg: NodeCG) {
   const CATEGORY_NAME = "カテゴリ名"
   const TWITCH_NAME = "Twitch"
   const COMMENTATOR_NAME = "実況者"
+  const PERIOD_TIME = "EST"
 
   // ---------- Replicants
   const allStreams = nodecg.Replicant<Stream[]>("allStreams")
@@ -37,13 +38,12 @@ module.exports = async function (nodecg: NodeCG) {
   await doc.loadInfo();
   console.log("Successfully loaded spreadsheet:", doc.title);
 
-  const sheet = doc.sheetsById[import.meta.env.VITE_SHEET_RUNNER_INFO_ID]
-  const rows = await sheet.getRows()
+  const sheet = doc.sheetsById[import.meta.env.VITE_SHEET_RUNNER_INFO_DAY1_ID]
+  const backupSheet = doc.sheetsById[import.meta.env.VITE_SHEET_RUNNER_INFO_BACKUP_ID]
 
-  allStreams.value = rows.map(row => {
-    const startTimeInSeconds = convertHMtoSeconds(row[START_TIME])
-    const endTimeInSeconds = convertHMtoSeconds(row[END_TIME])
-    const remainingSeconds = endTimeInSeconds - startTimeInSeconds
+  const sheetDay1Data: Stream[] = (await sheet.getRows()).map(row => {
+    const periodTime = row[PERIOD_TIME] ?? "0:00:00"
+    const remainingSeconds = convertHMStoSeconds(periodTime)
 
     return {
       runnerId: row[ID],
@@ -54,8 +54,26 @@ module.exports = async function (nodecg: NodeCG) {
       remainingSeconds,
       startTimeInString: row[START_TIME],
       twitchName: row[TWITCH_NAME],
-    }
+    } as Stream
   })
+
+  const sheetBackupData: Stream[] = (await backupSheet.getRows()).map(row => {
+    const periodTime = row[PERIOD_TIME] ?? "0:00:00"
+    const remainingSeconds = convertHMStoSeconds(periodTime)
+
+    return {
+      runnerId: row[ID],
+      runnerName: row[RUNNER_NAME],
+      categoryName: row[CATEGORY_NAME],
+      commentatorName: row[COMMENTATOR_NAME],
+      gameName: row[GAME_NAME],
+      remainingSeconds,
+      startTimeInString: row[START_TIME],
+      twitchName: row[TWITCH_NAME],
+    } as Stream
+  })
+
+  allStreams.value = [...sheetDay1Data, ...sheetBackupData]
 
   nodecg.listenFor("onRunnerInfoChange", (v) => {
     const runnerInfoIdx = allStreams.value.findIndex(s => s.runnerId === v.runnerId)
