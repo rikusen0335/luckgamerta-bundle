@@ -1,6 +1,7 @@
 /node_modules/
 /dashboard/
 /graphics/
+/extension/
 
 credentials.json
 .env

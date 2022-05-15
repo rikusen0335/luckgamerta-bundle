@@ -1,11 +1,11 @@
 import type { CreateNodecgInstance } from 'ts-nodecg/browser';
-import type { ReplicantMap } from './types/replicant';
+import type { ReplicantMap, MessageMap } from './types';
 
 declare global {
   const nodecg: CreateNodecgInstance<
-    'tennis',
+    'luckgamerta',
     undefined,
     ReplicantMap,
-    { [x: string]: never }
+    MessageMap,
   >;
 }

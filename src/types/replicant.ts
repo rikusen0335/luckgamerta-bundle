@@ -1,22 +1,28 @@
+import dayjs, { Dayjs } from "dayjs";
+
 export interface Score {
   point: 0 | 1 | 2 | 3 | 4;
   game: number;
 }
 
-export interface Player {
-  playerName: string;
+export interface Stream {
+  runnerId: string;
+  runnerName: string;
   twitchName: string;
+  startTimeInString: string;
   remainingSeconds: number;
-  commentatorName: string;
   gameName: string;
-  category: string;
+  categoryName: string;
+  commentatorName: string;
 }
 
 export interface ReplicantMap {
   names: [string, string];
   scores: [Score, Score];
-  players: Player[];
+  currentStreams: [Stream | null, Stream | null, Stream | null, Stream | null];
+  allStreams: Stream[];
   generalCommentatorName: string;
+  timePassed: number;
 }
 
 export const replicantDefaultValues: ReplicantMap = {
@@ -25,6 +31,8 @@ export const replicantDefaultValues: ReplicantMap = {
     { point: 0, game: 0 },
     { point: 0, game: 0 }
   ],
-  players: [],
+  currentStreams: [null, null, null, null],
+  allStreams: [],
   generalCommentatorName: "",
+  timePassed: 0,
 };
