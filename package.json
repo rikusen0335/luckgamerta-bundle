@@ -7,8 +7,8 @@
     "compatibleRange": "^1.8.1",
     "dashboardPanels": [
       {
-        "name": "luck-game-rta",
-        "title": "LuckGameRTA",
+        "name": "currentStreamInfo",
+        "title": "現在の配信情報",
         "width": 7,
         "file": "index.html",
         "headerColor": "#525F78"
@@ -18,6 +18,13 @@
         "title": "総合司会者",
         "width": 3,
         "file": "commentator.html",
+        "headerColor": "#525F78"
+      },
+      {
+        "name": "daySelect",
+        "title": "日時選択",
+        "width": 3,
+        "file": "daySelect.html",
         "headerColor": "#525F78"
       }
     ],

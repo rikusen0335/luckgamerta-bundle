@@ -13,6 +13,7 @@ export default defineConfig(async ({ command, mode }) => {
         input: {
           index: resolve(__dirname, 'index.html'),
           commentator: resolve(__dirname, 'commentator.html'),
+          daySelect: resolve(__dirname, 'daySelect.html'),
         },
       },
     },

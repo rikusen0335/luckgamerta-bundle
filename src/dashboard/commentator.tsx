@@ -1,6 +1,6 @@
 import React, { useState, type VFC } from 'react';
 import ReactDOM from 'react-dom';
-import { Button, ChakraProvider, Flex, Input } from "@chakra-ui/react"
+import { Button, ChakraProvider, Flex, Input, Text, useToast } from "@chakra-ui/react"
 
 import { extendTheme } from "@chakra-ui/react"
 
@@ -26,12 +26,16 @@ const App: VFC = () => {
   const [commentatorName, updateName] = useReplicant("generalCommentatorName")
   const [newName, setNewName] = useState(commentatorName)
 
+  const toast = useToast()
+
   return (
     <Flex p={3} gap={2} flexDir="column">
+      <Text>{`現在の総合司会者: ${commentatorName}`}</Text>
       <Input value={newName} placeholder="総合司会者名を入力してください" onChange={(e) => setNewName(e.target.value)} />
       <Flex justifyContent="flex-end">
         <Button onClick={() => {
           updateName(newName ?? "")
+          toast({ isClosable: true, title: "総合司会者名を更新しました", duration: 2500 })
         }}>更新する</Button>
       </Flex>
     </Flex>

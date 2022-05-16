@@ -2,7 +2,7 @@ import { useReplicant } from '@/hooks';
 import { Position } from '@/types';
 import { positionToString } from '@/utils';
 import { Box, Button, Flex, Grid, GridItem, Heading, Select, Text, useToast } from '@chakra-ui/react';
-import React, { useState, type VFC } from 'react';
+import React, { useEffect, useState, type VFC } from 'react';
 
 export const App: VFC = () => {
   const [allStreams] = useReplicant('allStreams')
@@ -33,21 +33,20 @@ export const App: VFC = () => {
             <option value={s.runnerId} selected={s.runnerId === runnerId}>{`${s.runnerId} - ${s.runnerName} | ${s.gameName}`}</option>
           )}
         </Select>
-        <Flex justifyContent="flex-end" gap={2}>
+        <Flex justifyContent="flex-end" alignItems="center" gap={2}>
           <Button onClick={
-            () => setRunnerId(initialRunnerId)
+            () => {
+              setRunnerId(initialRunnerId)
+              toast({ isClosable: true, title: "更新をキャンセルしました", duration: 2500 })
+            }
           }>
             更新前に戻す
           </Button>
           <Button onClick={
-            () => nodecg.sendMessage("onRunnerInfoChange", { runnerId, position })
-            .then(() => toast({
-              title: '更新に成功しました',
-              description: `枠（${position}）の走者情報の更新に成功しました`,
-              status: 'success',
-              duration: 3000,
-              isClosable: true,
-            }))}
+            () => {
+              nodecg.sendMessage("onRunnerInfoChange", { runnerId, position })
+              toast({ isClosable: true, title: "更新に成功しました", duration: 2500 })
+            }}
           >
             更新する
           </Button>

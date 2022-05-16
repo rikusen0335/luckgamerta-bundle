@@ -1,6 +1,6 @@
 import { TwitchEmbed } from '@/components';
 import { useReplicant } from '@/hooks';
-import { Box, Button, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, GridItem, Heading, Image, Text } from '@chakra-ui/react';
 import React, { ReactNode, useEffect, useState, type VFC } from 'react';
 import dayjs from "dayjs"
 import { IoLogoGameControllerB } from "react-icons/io"
@@ -9,7 +9,8 @@ import { FaMicrophone, FaHeadphonesAlt } from "react-icons/fa"
 import { CgScreen } from "react-icons/cg"
 import { convertSecondsToHMS } from '@/utils/convertSecondsToHMS';
 
-import backgroundImage from "../assets/images/background.png"
+import backgroundImage from "@/assets/images/background.png"
+import logoImage from "@/assets/images/lgr_without_letter.png"
 
 export const App: VFC = () => {
   const [streams] = useReplicant('currentStreams');
@@ -39,7 +40,18 @@ export const App: VFC = () => {
       >
         <GridItem rowSpan={9} borderColor="primary" borderStyle="solid">
           {/* <TwitchEmbed width="100%" height="100%" channelName={twitchName} parent="localhost" /> */}
-          <Box w={670} h={360} border={2} borderColor="gray.200" borderStyle="solid" bgColor="gray.100" m="auto" />
+          <Flex
+            w={670}
+            h={360}
+            justifyContent="center"
+            alignItems="center"
+            border={2}
+            borderColor="gray.200"
+            borderStyle="solid"
+            m="auto"
+          >
+            <Text fontSize="3xl" color="primary" fontWeight="bold">準備中</Text>
+          </Flex>
         </GridItem>
         <GridItem rowSpan={2}>
           <Flex gap={2} flexDir="column" position="relative" mx={10}>
@@ -135,9 +147,12 @@ export const App: VFC = () => {
           templateRows='repeat(22, 1fr)'
         >
           <GridItem colSpan={1}>
-            <Heading as="h1" size="md" color="primary" fontWeight="normal" mb={2} textAlign="center">
-              Luck Game RTA
-            </Heading>
+            <Flex justifyContent="center" alignItems="center">
+              <Image h={8} w={8} src={logoImage} mr={2} />
+              <Heading as="h1" size="md" color="primary" fontWeight="normal" textAlign="center">
+                Luck Game RTA
+              </Heading>
+            </Flex>
           </GridItem>
           {streams?.map((s, idx) =>
             <RunnerInformation
