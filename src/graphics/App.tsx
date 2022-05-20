@@ -41,7 +41,7 @@ export const App: VFC = () => {
         <GridItem rowSpan={9} borderColor="primary" borderStyle="solid">
           {/* <TwitchEmbed width="100%" height="100%" channelName={twitchName} parent="localhost" /> */}
           <Flex
-            w={670}
+            w={640}
             h={360}
             justifyContent="center"
             alignItems="center"

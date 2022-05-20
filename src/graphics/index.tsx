@@ -14,8 +14,8 @@ const theme = extendTheme({
     primary: "#5D5F5B",
   },
   fonts: {
-    heading: '"Noto Sans JP", sans-serif',
-    body: '"Noto Sans JP", sans-serif',
+    heading: '"Hiragino Kaku Gothic ProN", sans-serif',
+    body: '"Hiragino Kaku Gothic ProN", sans-serif',
   },
 })
 
