@@ -45,9 +45,9 @@ export const App: VFC = () => {
             h={360}
             justifyContent="center"
             alignItems="center"
-            border={2}
-            borderColor="gray.200"
-            borderStyle="solid"
+            // border={2}
+            // borderColor="gray.200"
+            // borderStyle="solid"
             m="auto"
           >
             <Text fontSize="3xl" color="primary" fontWeight="bold">準備中</Text>
